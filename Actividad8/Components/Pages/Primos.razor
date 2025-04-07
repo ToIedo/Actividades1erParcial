@@ -1,0 +1,55 @@
+﻿@page "/numeros_primos"
+@rendermode InteractiveServer
+
+<PageTitle>Números Primos</PageTitle>
+
+<h1>Números Primos</h1>
+
+<div>
+    <div class="mt-3 d-flex align-items-center">
+        <label for="numeroEntero" class="me-2" style="width:100px">Número Entero:</label>
+        <input type="number" id="numeroEntero" @bind="NumeroEntero" class="form-control" />
+    </div>
+    <button class="btn btn-primary mt-3" @onclick="CalcularPrimos">Calcular</button>
+</div>
+
+<div class="mt-3 d-flex">
+    <div class="me-3" style="width: 100%;">
+        <h2 style="position: sticky; top: 0; background: white; z-index: 1; padding: 5px;">Números Primos</h2>
+        <div style="max-height: 400px; overflow-y: auto; border: 1px transparent #ccc; padding: 5px;">
+            <table class="table table-bordered">
+                @foreach (var num in NumerosPrimos)
+                {
+                    var color = NumerosPrimos.IndexOf(num) % 2 == 0 ? "#f2f2f2" : "white";
+                    <tr style="height: 40px; background-color: @color">
+                        <td style="padding: 10px;">@num</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+@code {
+    int NumeroEntero { get; set; }
+    List<int> NumerosPrimos { get; set; } = new List<int>();
+
+    void CalcularPrimos()
+    {
+        NumerosPrimos.Clear();
+
+        for (int i = 2; i <= NumeroEntero; i++) {
+            if (EsPrimo(i)) NumerosPrimos.Add(i);
+        }
+
+        if (!NumerosPrimos.Contains(NumeroEntero)) NumerosPrimos.Add(NumeroEntero);
+    }
+
+    bool EsPrimo(int numero)
+    {
+        if (numero < 2) return false;
+        for (int i = 2; i <= Math.Sqrt(numero); i++)
+            if (numero % i == 0) return false;
+        return true;
+    }
+}

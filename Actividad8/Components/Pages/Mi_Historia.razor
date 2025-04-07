@@ -1,0 +1,39 @@
+﻿@page "/mihistoria"
+
+<div style="background-color: rgb(220,220,220); padding: 30px; height: 140px; align-content: center">
+<h2>Mi historia</h2>
+    <p>A continuación les escribiré información relevante de mi vida.</p>
+</div><br>
+
+<div class="row">
+    @foreach (var seccion in secciones)
+    {
+        <div class="col-md-4">
+            <div class="card">
+                <img src="@seccion.Imagen" style="width: 100%; height: 200px; object-fit: cover;" alt="@seccion.Titulo">
+                <div class="card-body">
+                    <h5 class="card-title">@seccion.Titulo</h5>
+                    <p class="card-text">@seccion.Descripcion</p>
+                    <button class="btn btn-primary">Conocer más</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private List<Seccion> secciones = new List<Seccion>
+    {
+        new Seccion { Titulo = "Formación", Descripcion = "Cuento algo sobre mi formación profesional.", Imagen = "https://imgs.search.brave.com/7DKk0vicR3F8iEcovSZ8JsvoL3vQmrL1dM2II9WNQf8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aG91c2VvZmhhY2tu/ZXkuY29tL2Nkbi9z/aG9wL2ZpbGVzL2xp/bWVyZW5jZV9kaWdp/dGFsX3dhbGxwYXBl/cl9pbmsuanBnP2Ny/b3A9Y2VudGVyJmhl/aWdodD0xNjAwJnY9/MTcyMjg2NTMzMSZ3/aWR0aD0xNjAw" },
+        new Seccion { Titulo = "Hobbies", Descripcion = "Cuento algo sobre mis hobbies.", Imagen = "https://imgs.search.brave.com/I-Rg7Sy3uOp3ThAQ8hbH0kvmmqwcCikj2Ej0IUY8xFs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zNDU0/ODkucGNkbi5jby93/cC1jb250ZW50L3Vw/bG9hZHMvMjAyMi8w/Ny9LSVAtTmlnaHQt/SnVuZ2xlLTEtODUz/eDEwMjQuanBn" },
+        new Seccion { Titulo = "Mi carrera", Descripcion = "Cuento algo sobre lo que espero de mi carrera.", Imagen = "https://imgs.search.brave.com/GEPJWZNEMJt_b-lENV1Eav6rFmXJoVmHB7TjGHYekqM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuaG9tZWltYWdl/ZGlyZWN0LmNvbS9y/dDpmaXQvdzoyMDAw/L2g6MC9nOnNtL3Bs/YWluL2h0dHBzOi8v/aG9tZWltYWdlZGly/ZWN0LmNvbS9tZWRp/YS9jMS8xNy80My8x/NjU4NzY4MjAwL09T/MzAxMS1ncmFuZGVj/by1vcHVzLXdhbGxw/YXBlci12aW50YWdl/LWZsb3JhbC1hbGxl/bi1icmFpdGh3YWl0/ZS5qcGc" }
+    };
+
+    public class Seccion
+    {
+        public string Titulo { get; set; }
+        public string Descripcion { get; set; }
+        public string Imagen { get; set; }
+    };
+};
+
